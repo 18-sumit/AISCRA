@@ -1,0 +1,75 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Python bytecode and tooling caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.coverage
+.coverage.*
+htmlcov/
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ai-env/
+ai-envsource/
+
+# Node dependencies and build artifacts
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Runtime logs and local data artifacts
+*.log
+logs/*.log
+data/*
+!data/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# LaTeX build artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+
+# Local generated docs/binaries
+*.pdf
+*.doc
+*.docx
+
+# Personal/academic assets not needed in remote repository
+public/college_logo.png
+REPORT.tex
+research_paper.tex
+main.tex
+
+
+# Misc build/cache dirs
+.cache/

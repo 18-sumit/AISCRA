@@ -1,0 +1,497 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  COMPANY PROFILE — Supply Chain Risk Analysis System
+#
+#  This is the ONLY file you edit to switch companies.
+#  Run: python -m module1.main --init-db   after changing this file.
+#
+#  Current Company: CIPLA LIMITED
+# ─────────────────────────────────────────────────────────────────────────────
+
+company:
+  name: "Cipla Limited"
+  short_name: "Cipla"
+  industry: "Pharmaceutical Manufacturing"
+  sector: "Healthcare"
+  headquarters_country: "India"
+  headquarters_city: "Mumbai"
+  headquarters_country_code: "IN"
+  description: >
+    Cipla Limited is a global pharmaceutical company headquartered in Mumbai, India.
+    It manufactures generic medicines, active pharmaceutical ingredients (APIs),
+    and respiratory, oncology, anti-infective, cardiovascular, and CNS drugs.
+    Cipla exports to 80+ countries and operates manufacturing facilities across India,
+    South Africa, Uganda, the UK, and the USA.
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  SUPPLIERS
+#  tier: 1 = direct supplier, 2 = supplier's supplier, 3 = raw material source
+#  criticality: critical | high | medium | low
+#  dependency_weight: 0.0–1.0 (fraction of this commodity sourced from this supplier)
+# ─────────────────────────────────────────────────────────────────────────────
+suppliers:
+  # ── TIER 1: Direct API Suppliers ──────────────────────────────────────────
+  - name: "Zhejiang Huahai Pharmaceutical"
+    aliases: ["Huahai", "ZHP", "Zhejiang Huahai"]
+    commodity: "Cardiovascular APIs (Valsartan, Losartan, Irbesartan)"
+    country: "China"
+    country_code: "CN"
+    tier: 1
+    criticality: "critical"
+    dependency_weight: 0.35
+    notes: "Primary source for ARB cardiovascular APIs. History of USFDA warning letters."
+
+  - name: "Aurobindo Pharma API Division"
+    aliases: ["Aurobindo API", "Aurobindo"]
+    commodity: "Antiretroviral APIs (Efavirenz, Lamivudine, Tenofovir)"
+    country: "India"
+    country_code: "IN"
+    tier: 1
+    criticality: "high"
+    dependency_weight: 0.45
+    notes: "Key ARV API supplier. Shares some Indian sourcing risk with Cipla's own facilities."
+
+  - name: "Laurus Labs"
+    aliases: ["Laurus"]
+    commodity: "Oncology APIs (Sorafenib, Imatinib intermediates)"
+    country: "India"
+    country_code: "IN"
+    tier: 1
+    criticality: "high"
+    dependency_weight: 0.40
+    notes: "Critical for oncology portfolio expansion in Africa and India."
+
+  - name: "Divi's Laboratories"
+    aliases: ["Divis", "Divi's"]
+    commodity: "Custom APIs and intermediates (multi-therapeutic)"
+    country: "India"
+    country_code: "IN"
+    tier: 1
+    criticality: "high"
+    dependency_weight: 0.30
+    notes: "Supplies custom synthesis APIs for multiple therapeutic segments."
+
+  - name: "Lonza Group"
+    aliases: ["Lonza"]
+    commodity: "Respiratory APIs (Salbutamol Sulphate, Formoterol)"
+    country: "Switzerland"
+    country_code: "CH"
+    tier: 1
+    criticality: "critical"
+    dependency_weight: 0.60
+    notes: "Primary Salbutamol API source. Critical for Cipla's flagship Asthalin brand."
+
+  - name: "Gujarat Alkalies and Chemicals"
+    aliases: ["GACL", "Gujarat Alkalies"]
+    commodity: "Solvents (Caustic Soda, Chlorine, industrial solvents)"
+    country: "India"
+    country_code: "IN"
+    tier: 1
+    criticality: "medium"
+    dependency_weight: 0.25
+    notes: "Industrial solvent supply for API synthesis processes."
+
+  - name: "Schott AG"
+    aliases: ["Schott"]
+    commodity: "Pharmaceutical Glass Vials and Ampoules"
+    country: "Germany"
+    country_code: "DE"
+    tier: 1
+    criticality: "high"
+    dependency_weight: 0.40
+    notes: "Primary glass primary packaging supplier. Energy-intensive glass furnace operations."
+
+  - name: "Uflex Ltd"
+    aliases: ["Uflex"]
+    commodity: "Flexible Packaging (blister films, foils, laminates)"
+    country: "India"
+    country_code: "IN"
+    tier: 1
+    criticality: "medium"
+    dependency_weight: 0.35
+    notes: "Key packaging material supplier for oral solid dosage forms."
+
+  - name: "Colorcon"
+    aliases: []
+    commodity: "Film Coating Systems and Excipients"
+    country: "USA"
+    country_code: "US"
+    tier: 1
+    criticality: "medium"
+    dependency_weight: 0.50
+    notes: "Opadry and Surelease coating systems for tablet formulations."
+
+  - name: "Balaji Amines"
+    aliases: []
+    commodity: "Aliphatic Amines and Specialty Chemicals"
+    country: "India"
+    country_code: "IN"
+    tier: 1
+    criticality: "medium"
+    dependency_weight: 0.20
+    notes: "Key chemical intermediate supplier for multiple API synthesis routes."
+
+  # ── TIER 2: Indirect / Sub-Tier Suppliers ─────────────────────────────────
+  - name: "BASF Pharma"
+    aliases: ["BASF"]
+    commodity: "Excipients (Kollidon, Lutrol, Kolliphor)"
+    country: "Germany"
+    country_code: "DE"
+    tier: 2
+    criticality: "medium"
+    dependency_weight: 0.30
+    notes: "Pharmaceutical excipients used in formulations. European sourcing dependency."
+
+  - name: "Evonik Industries"
+    aliases: ["Evonik"]
+    commodity: "Drug Delivery Excipients (Eudragit polymer coatings)"
+    country: "Germany"
+    country_code: "DE"
+    tier: 2
+    criticality: "medium"
+    dependency_weight: 0.25
+    notes: "Modified-release polymer systems. Germany energy risk exposure."
+
+  - name: "Changshu Pharmaceutical"
+    aliases: ["Changshu"]
+    commodity: "Metformin API and Intermediates"
+    country: "China"
+    country_code: "CN"
+    tier: 2
+    criticality: "medium"
+    dependency_weight: 0.30
+    notes: "Metformin bulk API. China regulatory and geopolitical risk."
+
+  - name: "MTAR Technologies"
+    aliases: []
+    commodity: "Precision Engineering Components (manufacturing equipment parts)"
+    country: "India"
+    country_code: "IN"
+    tier: 2
+    criticality: "low"
+    dependency_weight: 0.10
+    notes: "Machinery parts for Cipla's manufacturing lines."
+
+  # ── TIER 3: Raw Material / Commodity Sources ──────────────────────────────
+  - name: "ONGC Petrochemicals"
+    aliases: ["ONGC"]
+    commodity: "Petrochemical Feedstocks (benzene, toluene, xylene)"
+    country: "India"
+    country_code: "IN"
+    tier: 3
+    criticality: "low"
+    dependency_weight: 0.15
+    notes: "Upstream petrochemical feedstock for solvent synthesis."
+
+  - name: "Middle Eastern Crude Oil Exporters"
+    aliases: ["Saudi Aramco", "ADNOC", "Gulf crude"]
+    commodity: "Crude Oil (feedstock for petrochemical solvents)"
+    country: "Saudi Arabia"
+    country_code: "SA"
+    tier: 3
+    criticality: "medium"
+    dependency_weight: 0.20
+    notes: "Indirect crude oil dependency for solvent and petrochemical inputs."
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  ALTERNATE SUPPLIERS
+#  Pre-seeded fallback options for disrupted primaries
+# ─────────────────────────────────────────────────────────────────────────────
+alternates:
+  - for_commodity: "Cardiovascular APIs"
+    suppliers:
+      - name: "Jubilant Biosys"
+        country: "India"
+        country_code: "IN"
+        capacity_fit: "medium"
+        lead_time_weeks: 4
+        notes: "Indian ARB alternative. Moderate capacity."
+      - name: "Hetero Drugs API"
+        country: "India"
+        country_code: "IN"
+        capacity_fit: "high"
+        lead_time_weeks: 3
+        notes: "Strong ARB and cardiovascular API portfolio."
+      - name: "Teva API"
+        country: "Israel"
+        country_code: "IL"
+        capacity_fit: "high"
+        lead_time_weeks: 6
+        notes: "Geographically diversified. High quality standards."
+
+  - for_commodity: "Respiratory APIs"
+    suppliers:
+      - name: "Mexichem Specialty Compounds"
+        country: "Mexico"
+        country_code: "MX"
+        capacity_fit: "medium"
+        lead_time_weeks: 8
+        notes: "Latin American alternative for Salbutamol."
+      - name: "Fermion Oy"
+        country: "Finland"
+        country_code: "FI"
+        capacity_fit: "medium"
+        lead_time_weeks: 10
+        notes: "European respiratory API source. Long lead time."
+
+  - for_commodity: "Pharmaceutical Glass Vials"
+    suppliers:
+      - name: "Gerresheimer"
+        country: "Germany"
+        country_code: "DE"
+        capacity_fit: "high"
+        lead_time_weeks: 6
+        notes: "Second-largest pharma glass manufacturer globally."
+      - name: "Nipro Pharmapackaging"
+        country: "Belgium"
+        country_code: "BE"
+        capacity_fit: "medium"
+        lead_time_weeks: 8
+        notes: "European glass vial alternative."
+      - name: "SGD Pharma"
+        country: "France"
+        country_code: "FR"
+        capacity_fit: "medium"
+        lead_time_weeks: 7
+        notes: "French glass vials. Not Germany-dependent."
+
+  - for_commodity: "Antiretroviral APIs"
+    suppliers:
+      - name: "Mylan Laboratories"
+        country: "India"
+        country_code: "IN"
+        capacity_fit: "high"
+        lead_time_weeks: 3
+        notes: "Strong ARV API portfolio. PEPFAR-qualified."
+      - name: "Matrix Laboratories"
+        country: "India"
+        country_code: "IN"
+        capacity_fit: "medium"
+        lead_time_weeks: 4
+        notes: "Established ARV API manufacturer."
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  KEYWORD REGISTRY — Track A search phrases
+#  Used to build queries for NewsAPI and GNews keyword searches.
+#  Each entry generates exact-match and phrase-level search terms.
+# ─────────────────────────────────────────────────────────────────────────────
+keyword_registry:
+
+  # Supplier names and aliases
+  - category: "supplier"
+    entity_name: "Zhejiang Huahai Pharmaceutical"
+    keywords:
+      - "Zhejiang Huahai"
+      - "Huahai Pharmaceutical"
+      - "ZHP pharma"
+      - "Valsartan recall"
+      - "NDMA contamination"
+
+  - category: "supplier"
+    entity_name: "Lonza Group"
+    keywords:
+      - "Lonza pharma"
+      - "Lonza API"
+      - "Lonza Salbutamol"
+      - "Lonza manufacturing"
+
+  - category: "supplier"
+    entity_name: "Laurus Labs"
+    keywords:
+      - "Laurus Labs"
+      - "Laurus API"
+
+  - category: "supplier"
+    entity_name: "Divi's Laboratories"
+    keywords:
+      - "Divi's Laboratories"
+      - "Divis Labs"
+      - "Divi's API"
+
+  - category: "supplier"
+    entity_name: "Schott AG"
+    keywords:
+      - "Schott AG pharma"
+      - "Schott glass vials"
+      - "pharmaceutical glass shortage"
+      - "pharma glass vials supply"
+
+  - category: "supplier"
+    entity_name: "Aurobindo Pharma"
+    keywords:
+      - "Aurobindo Pharma"
+      - "Aurobindo API"
+      - "Aurobindo USFDA"
+
+  # Raw materials / commodities
+  - category: "commodity"
+    entity_name: "Salbutamol API"
+    keywords:
+      - "Salbutamol supply"
+      - "Albuterol API shortage"
+      - "respiratory API shortage"
+      - "Salbutamol Sulphate"
+
+  - category: "commodity"
+    entity_name: "Antiretroviral APIs"
+    keywords:
+      - "ARV API shortage"
+      - "antiretroviral API supply"
+      - "Tenofovir supply"
+      - "Efavirenz shortage"
+      - "Lamivudine supply"
+
+  - category: "commodity"
+    entity_name: "Cardiovascular APIs"
+    keywords:
+      - "Valsartan shortage"
+      - "Losartan supply disruption"
+      - "ARB API supply"
+      - "cardiovascular API shortage"
+      - "Amlodipine API"
+
+  - category: "commodity"
+    entity_name: "Pharmaceutical Solvents"
+    keywords:
+      - "pharmaceutical solvent shortage"
+      - "API synthesis solvent"
+      - "acetonitrile shortage"
+      - "methanol pharma"
+
+  - category: "commodity"
+    entity_name: "Excipients"
+    keywords:
+      - "pharmaceutical excipient shortage"
+      - "Kollidon shortage"
+      - "drug excipient supply"
+      - "MCC shortage"
+
+  - category: "commodity"
+    entity_name: "Metformin API"
+    keywords:
+      - "Metformin API shortage"
+      - "Metformin supply chain"
+      - "Metformin China"
+
+  # Trade routes and logistics
+  - category: "logistics"
+    entity_name: "India-China API Trade"
+    keywords:
+      - "India China pharmaceutical trade"
+      - "China API export ban"
+      - "China pharmaceutical export restriction"
+      - "India API import China"
+      - "China bulk drug"
+
+  - category: "logistics"
+    entity_name: "Shipping Routes"
+    keywords:
+      - "Red Sea shipping pharma"
+      - "Suez Canal disruption pharmaceutical"
+      - "freight cost pharmaceutical India"
+      - "shipping delay API"
+
+  # Regulatory events
+  - category: "regulatory"
+    entity_name: "FDA / CDSCO Actions"
+    keywords:
+      - "FDA warning letter pharmaceutical India"
+      - "FDA import alert India"
+      - "CDSCO manufacturing ban"
+      - "GMP violation India pharma"
+      - "FDA 483 observations"
+
+  - category: "regulatory"
+    entity_name: "NDMA Contamination"
+    keywords:
+      - "NDMA contamination pharma"
+      - "nitrosamine impurity recall"
+      - "drug recall India"
+      - "pharmaceutical recall API"
+
+  # Geopolitical
+  - category: "geopolitical"
+    entity_name: "China Export Restrictions"
+    keywords:
+      - "China export restriction chemicals"
+      - "China pharmaceutical export ban"
+      - "China API supply restriction"
+      - "China trade war pharma"
+
+  - category: "geopolitical"
+    entity_name: "India Manufacturing"
+    keywords:
+      - "India pharmaceutical manufacturing"
+      - "India pharma disruption"
+      - "Indian pharma plant fire"
+      - "India chemical plant accident"
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  RSS FEED CONFIGURATION
+# ─────────────────────────────────────────────────────────────────────────────
+rss_feeds:
+  track_a:
+    - name: "Fierce Pharma"
+      url: "https://www.fiercepharma.com/rss/xml"
+      category: "pharma_news"
+    - name: "PharmaBiz"
+      url: "https://www.pharmabiz.com/rss.aspx"
+      category: "pharma_news"
+    - name: "ET Pharma"
+      url: "https://economictimes.indiatimes.com/industry/healthcare/biotech/pharmaceuticals/rssfeeds/14300007.cms"
+      category: "pharma_news"
+    - name: "FDA News"
+      url: "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/medwatch-safety-alerts/rss.xml"
+      category: "regulatory"
+    - name: "Supply Chain Dive"
+      url: "https://www.supplychaindive.com/feeds/news/"
+      category: "supply_chain"
+    - name: "Reuters Health"
+      url: "https://feeds.reuters.com/reuters/healthNews"
+      category: "health_news"
+    - name: "Pharmaceutical Technology"
+      url: "https://www.pharmaceutical-technology.com/feed/"
+      category: "pharma_news"
+    - name: "Drug Topics"
+      url: "https://www.drugtopics.com/rss/all"
+      category: "pharma_news"
+    - name: "Chemical Week"
+      url: "https://chemweek.com/CW/rss/CW_news.xml"
+      category: "chemicals"
+
+  track_b:
+    - name: "Al Jazeera World"
+      url: "https://www.aljazeera.com/xml/rss/all.xml"
+      category: "geopolitics"
+    - name: "Reuters World News"
+      url: "https://feeds.reuters.com/Reuters/worldNews"
+      category: "geopolitics"
+    - name: "BBC World"
+      url: "http://feeds.bbci.co.uk/news/world/rss.xml"
+      category: "geopolitics"
+    - name: "AP News"
+      url: "https://feeds.apnews.com/apnews/world-news"
+      category: "geopolitics"
+    - name: "Foreign Policy"
+      url: "https://foreignpolicy.com/feed/"
+      category: "geopolitics"
+    - name: "OilPrice.com"
+      url: "https://oilprice.com/rss/main"
+      category: "commodities"
+    - name: "Reuters Commodities"
+      url: "https://feeds.reuters.com/reuters/commoditiesNews"
+      category: "commodities"
+    - name: "FreightWaves"
+      url: "https://www.freightwaves.com/news/feed"
+      category: "logistics"
+    - name: "Economic Times"
+      url: "https://economictimes.indiatimes.com/rssfeedsdefault.cms"
+      category: "regional_business"
+    - name: "Business Standard"
+      url: "https://www.business-standard.com/rss/latest.rss"
+      category: "regional_business"
+    - name: "Nikkei Asia"
+      url: "https://asia.nikkei.com/rss/feed/nar"
+      category: "regional_business"
+    - name: "South China Morning Post"
+      url: "https://www.scmp.com/rss/91/feed"
+      category: "regional_business"
